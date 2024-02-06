@@ -7,10 +7,10 @@ import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({
   selector: 'app-card1',
-  templateUrl: './card1.component.html',
-  styleUrls: ['./card1.component.css']
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-export class Card1Component {
+export class ListComponent {
 
   chartData: ExecutiveGraphData = {
     registros:0,
@@ -24,6 +24,8 @@ export class Card1Component {
 
   isReportePersonas : boolean = false;
 
+  filteredReportePersonas : ReportePersona[] = [];
+
   reportePersonas : ReportePersona[] = []
 
   constructor(private excelService: ExcelService, 
@@ -32,7 +34,9 @@ export class Card1Component {
 
   ngOnInit(): void {
     this.excelService.processedData$.subscribe(data =>{
+      data.pop();
       this.reportePersonas = data;
+      this.filteredReportePersonas = this.reportePersonas;
       this.isReportePersonas = true;
     })
   }
@@ -41,4 +45,20 @@ export class Card1Component {
     console.log(persona);
     this.personaService.setPersona(persona);
   }
+
+  filterEmployees(event: Event): void {
+    const inputElement = event.target as HTMLInputElement; // Type assertion
+    const searchTerm = inputElement.value.trim(); // Trim whitespace from the search term
+  
+    if (searchTerm === "") {
+      console.log("ACA ESTOY");
+      this.filteredReportePersonas = this.reportePersonas;
+    } else {
+      this.filteredReportePersonas = this.reportePersonas.filter(persona =>
+        persona.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+  }
+  
+
 }

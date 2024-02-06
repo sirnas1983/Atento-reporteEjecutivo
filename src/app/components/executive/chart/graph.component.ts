@@ -27,6 +27,7 @@ export class GraphComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+    aspectRatio: 0,
     scales: { 
       x: {
        weight:1.1

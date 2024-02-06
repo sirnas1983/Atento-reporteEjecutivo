@@ -1,17 +1,17 @@
 <!-- Card Header - Dropdown -->
 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-    <h6 class="m-0 font-weight-bold text-primary">DESVIOS - {{chartData.porDesvios}} (%)</h6>
+    <h6 class="m-0 font-weight-bold text-primary">TOTAL DE DESVIOS SOBRE {{chartData.registros}} registros: {{chartData.porDesvios}}%</h6>
 </div>
 <!-- Card Body -->
 <div class="card-body">
     <div class="chart-area">
         <div *ngIf="sortedData" class="chart-pie pt-4 pb-2">
-            <canvas id="myChart" 
+            <canvas id="myChart" height="100vh" width="100vw"
                 baseChart class="chart" 
                 [data]="barChartData" 
                 [options]="barChartOptions"
                 [type]="chartType" 
-                height="80vh"
+                
             >
             </canvas>
         </div>

@@ -1,0 +1,20 @@
+<div class="card-header py-3">
+    <span><h6 style="display: inline;" class="m-0 font-weight-bold text-primary">EMPLEADOS</h6> - {{filteredReportePersonas.length}} registros</span>
+    <input type="text" class="form-control" placeholder="Search..." (input)="filterEmployees($event)">
+</div>
+
+<div class="card-body">
+
+    <div *ngIf="isReportePersonas">
+        <div id="my-div" *ngFor="let persona of filteredReportePersonas">
+            <a class="fill-div" href="#reportePersona" (click)="navigateToDetails(persona)">
+                <span >
+                    <h4 class="small font-weight-bold" style="display: inline;">{{persona.nombre}}</h4>
+                     - 
+                    <small>{{persona.porDesvios}}%</small>
+                </span>
+
+            </a>
+        </div>
+    </div>
+</div>

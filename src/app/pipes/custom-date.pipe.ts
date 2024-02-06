@@ -8,6 +8,6 @@ export class CustomDatePipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
     const datePipe = new DatePipe('es');
-    return datePipe.transform(value, 'fullDate');
+    return datePipe.transform(value, 'shortDate');
   }
 }
