@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ResumenEjecutivo } from '../intefaces/ResumenEjecutivo';
 import { ReportePersona } from '../intefaces/PersonasReporte';
 import { ExcelService } from './excel.service';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ResumenService {
 
   private rawData: {} = {};
 
-  constructor(private excelService: ExcelService) {
+  constructor(private excelService: ExcelService, private ls : LoaderService) {
     this.initializeDataSubscription();
   }
 
@@ -29,11 +30,12 @@ export class ResumenService {
   }
 
   private setData(data: any[]): void {
+    this.ls.showLoader(this.constructor.name);
     const headers: string[] = data[0];
     const parsedData = this.parseDataAsResumenEjecutivo(data, headers);
     const reportData = this.processResumenEjecutivo(parsedData);
-    console.log(reportData);
     this.processedDataSubject.next(reportData);
+    this.ls.hideLoader(this.constructor.name);
   }
 
   private parseDataAsResumenEjecutivo(data: any[], headers: string[]): ResumenEjecutivo[] {
