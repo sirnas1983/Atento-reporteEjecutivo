@@ -21,7 +21,6 @@ export class TmoTableComponent {
     this.improductividadService.tableData$.subscribe((data) => {
       this.nestedTableData = data.slice(1);
       this.filteredReport = this.nestedTableData;
-      console.log(data);
     });
   }
 
