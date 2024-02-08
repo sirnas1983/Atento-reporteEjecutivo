@@ -1,90 +1,55 @@
-<div *ngIf="isPersona" class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DETALLE EMPLEADO</h6>
-</div>
-<div class="card-body">
-    <div class="text-center">
-        <p><b>{{persona?.nombre}}</b> - {{persona?.registros?.length}} registros</p>
-    </div>
-    <div #container class="row">
-        <div  class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="Desvios"
-                [percent]= "persona?.porDesvios || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porDesvios))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porDesvios))
-                [radius]="radius || 0"
-                ></circle-progress>
-        </div>
-        <div class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="Faltas"
-                [percent]= "persona?.porFaltas || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porFaltas))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porFaltas))
-                [radius]="radius || 0"
-            ></circle-progress>
-        </div>
-        <div class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="TMO's"
-                [percent]= "persona?.porTMO || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porTMO))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porTMO))
-                [radius]="radius || 0"
-            ></circle-progress>
-        </div>
-    </div>
-    <hr>
-    <div #container class="row">
-        <div  class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="Descansos"
-                [percent]= "persona?.porDescansos || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porDescansos))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porDescansos))
-                [radius]="radius || 0"
-                ></circle-progress>
-        </div>
-        <div class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="Improductividad"
-                [percent]= "persona?.porImproductivos || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porImproductivos))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porImproductivos))
-                [radius]="radius || 0"
-            ></circle-progress>
-        </div>
-        <div class="col-lg-4 p-2 center-container">
-            <circle-progress
-                subtitle="Tardanzas"
-                [percent]= "persona?.porTardanza || 0"
-                [innerStrokeColor]=(getColorFromPercentage(persona?.porTardanza))
-                [outerStrokeColor]=(getColorForInnerCircle(persona?.porTardanza))
-                [radius]="radius || 0"
-            ></circle-progress>
-        </div>
-    </div>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12">
-          <div class="d-flex align-items-center">
-            <button class="btn btn-link" (click)="toggleContent()">
-              <i class="fas" [ngClass]="{'fa-minus': showContent, 'fa-plus': !showContent}"></i>
-            </button>
-            <p class="mb-0"><b>REGISTROS</b></p>
-          </div>
-          <hr>
-          <div *ngIf="showContent">
-            <p *ngFor="let registro of persona?.registros || []">
-              <b>{{registro.Fecha | transformExcelDate | customDate}}</b> - {{registro.SITE}}
-              <br>
-              <small>Tard: {{registro.TARDANZAS}} - </small>
-              <small>TMO's: {{registro.TMO}} - </small>
-              <small>Desc: {{registro.BREAK}} - </small>
-              <small>Prod: {{registro.PRODUCTIVIDAD}} - </small>
-              <small>Faltas: {{registro.FALTA}}</small>
-            </p>
-          </div>
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <div *ngIf="isPersona"
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">DETALLE <b>{{persona?.nombre}}</b> -
+                        {{persona?.registros?.length}} registros</h6>
+                    <button class="btn btn-primary" [routerLink]="['/personas']">Volver al listado</button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-link" (click)="toggleContent()">
+                                    <b>{{ showContent ? 'Ocultar registros' : 'Ver registros' }}</b>
+                                </button>
+                            </div>
+                            <hr>
+                            <div *ngIf="showContent">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="table-header">
+                                                <th class="small-text">Fecha</th>
+                                                <th class="small-text">Sitio</th>
+                                                <th class="small-text">Tardanzas</th>
+                                                <th class="small-text">TMO's</th>
+                                                <th class="small-text">Descansos</th>
+                                                <th class="small-text">Productividad</th>
+                                                <th class="small-text">Faltas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let registro of persona?.registros || []">
+                                                <td class="small-text">{{ registro.Fecha | transformExcelDate |
+                                                    customDate }}</td>
+                                                <td class="small-text">{{ registro.SITE }}</td>
+                                                <td class="small-text">{{ registro.TARDANZAS }}</td>
+                                                <td class="small-text">{{ registro.TMO }}</td>
+                                                <td class="small-text">{{ registro.BREAK }}</td>
+                                                <td class="small-text">{{ registro.PRODUCTIVIDAD }}</td>
+                                                <td class="small-text">{{ registro.FALTA }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-         
+    </div>
 </div>

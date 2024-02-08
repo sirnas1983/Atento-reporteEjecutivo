@@ -1,5 +1,5 @@
-import { Component, HostListener, Inject, Injector, OnInit, ViewChild } from '@angular/core';
-import { ChartData, ChartEvent } from 'chart.js';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ChartData } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ExecutiveGraphData } from 'src/app/intefaces/ExecutiveGraphData';
 import { ArrayToGraphDataService } from 'src/app/services/array-to-graph-data.service';

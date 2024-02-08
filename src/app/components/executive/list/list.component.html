@@ -1,20 +1,51 @@
-<div class="card-header py-3">
-    <span><h6 style="display: inline;" class="m-0 font-weight-bold text-primary">EMPLEADOS</h6> - {{filteredReportePersonas.length}} registros</span>
-    <input type="text" class="form-control" placeholder="Search..." (input)="filterEmployees($event)">
-</div>
-
-<div class="card-body">
-
-    <div *ngIf="isReportePersonas">
-        <div id="my-div" *ngFor="let persona of filteredReportePersonas">
-            <a class="fill-div" href="#reportePersona" (click)="navigateToDetails(persona)">
-                <span >
-                    <h4 class="small font-weight-bold" style="display: inline;">{{persona.nombre}}</h4>
-                     - 
-                    <small>{{persona.porDesvios}}%</small>
-                </span>
-
-            </a>
+<div class="table-responsive">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
+        <input type="text" class="form-control" placeholder="Buscar..." (input)="filterEmployees($event)">
     </div>
+    <table class="outer-table table table-bordered table-hover">
+        <tbody>
+            <ng-container *ngFor="let element of filteredReportePersonas">
+                <!-- Group by name -->
+                <tr (click)="toggleInnerTable(element)">
+                    <td colspan="7" class="small-text">
+                        <strong >{{ element.nombre }}</strong> - DNI: {{element.dni}}
+                    </td>
+                </tr>
+                <!-- Inner table data -->
+                <ng-container *ngIf="element.collapsed">
+                    <tr class="table-header">
+                        <th class="small-text">Fecha</th>
+                        <th class="small-text">Sitio</th>
+                        <th class="small-text">Tardanzas</th>
+                        <th class="small-text">TMO's</th>
+                        <th class="small-text">Descansos</th>
+                        <th class="small-text">Productividad</th>
+                        <th class="small-text">Faltas</th>
+                    </tr>
+                    <tr *ngFor="let registro of element.registros">
+                        <td class="small-text">{{ registro.Fecha | transformExcelDate | customDate }}</td>
+                        <td class="small-text">{{ registro.SITE }}</td>
+                        <td class="small-text" [ngClass]="{'text-red': registro.TARDANZAS !== 'OK'}"
+                            (click)="openSpecificReport(registro, element, 'TARDANZAS')">
+                            {{ registro.TARDANZAS }}</td>
+                        <td class="small-text" [ngClass]="{'text-red': registro.TMO !== 'OK'}"
+                            (click)="openSpecificReport(registro, element, 'TMO')">
+                            {{ registro.TMO }}</td>
+                        <td class="small-text" [ngClass]="{'text-red': registro.BREAK !== 'OK'}"
+                            (click)="openSpecificReport(registro, element, 'TARDANZAS')">
+                            {{ registro.BREAK}}</td>
+                        <td class="small-text" [ngClass]="{'text-red': registro.PRODUCTIVIDAD !== 'OK'}"
+                            (click)="openSpecificReport(registro, element, 'PRODUCTIVIDAD')">
+                            {{ registro.PRODUCTIVIDAD }}</td>
+                        <td class="small-text" [ngClass]="{'text-red': registro.FALTA !== 'OK'}"
+                            (click)="openSpecificReport(registro, element, 'TARDANZAS')">
+                            {{ registro.FALTA }}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
 </div>

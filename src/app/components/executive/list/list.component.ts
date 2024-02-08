@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ExecutiveGraphData } from 'src/app/intefaces/ExecutiveGraphData';
-import { ReportePersona } from 'src/app/intefaces/PersonasReporte';
 import { ResumenService } from 'src/app/services/resumen.service';
+import { ReportePersona } from 'src/app/intefaces/PersonasReporte';
 import { PersonaService } from 'src/app/services/persona.service';
-import { LoaderService } from 'src/app/services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -12,53 +11,62 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class ListComponent {
 
-  chartData: ExecutiveGraphData = {
-    registros: 0,
-    porDescansos: 0,
-    porDesvios: 0,
-    porFaltas: 0,
-    porImproductivos: 0,
-    porTMO: 0,
-    porTardanza: 0
-  };
-
+  filteredReportePersonas: any[] = [];
+  reportePersonas: any[] = [];
   isReportePersonas: boolean = false;
+  persona!: ReportePersona;
+  isPersona = false;
+  innerTableVisible: boolean = false;
 
-  filteredReportePersonas: ReportePersona[] = [];
 
-  reportePersonas: ReportePersona[] = []
-
-  constructor(private resumenService: ResumenService,
-    private personaService: PersonaService,
-    private loaderService: LoaderService) { }
+  constructor(
+    private router: Router,
+    private resumenService: ResumenService,
+    private personaService: PersonaService
+  ) {
+  }
 
   ngOnInit(): void {
-
-    this.resumenService.processedData$.subscribe(data => {
-      this.reportePersonas = data;
-      this.personaService.setPersona(this.reportePersonas[0]);
-      this.filteredReportePersonas = this.reportePersonas;
+    this.resumenService.processedData$.subscribe((data: any) => {
+      this.reportePersonas = data; // Assign data to reportePersonas
+      this.filteredReportePersonas = data;
       this.isReportePersonas = true;
     });
   }
 
-
-  navigateToDetails(persona: any) {
+  navigateToDetails(persona: ReportePersona) {
+    this.persona = persona;
+    this.isPersona = true;
     this.personaService.setPersona(persona);
+    this.router.navigate(['/personas/detalle/', String(persona.nombre.split(" ")[0]).toLowerCase()]);
   }
 
   filterEmployees(event: Event): void {
-    const inputElement = event.target as HTMLInputElement; // Type assertion
-    const searchTerm = inputElement.value.trim(); // Trim whitespace from the search term
-
+    const inputElement = event.target as HTMLInputElement;
+    const searchTerm = inputElement.value.trim();
     if (searchTerm === "") {
-      this.filteredReportePersonas = this.reportePersonas;
+      this.filteredReportePersonas = this.reportePersonas; // Filter filteredReportePersonas instead
     } else {
       this.filteredReportePersonas = this.reportePersonas.filter(persona =>
-        persona.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+        persona.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        persona.dni.toString().includes(searchTerm)
       );
     }
   }
 
+  toggleInnerTable(row : any) {
+    row.collapsed = !row.collapsed;
+  }
+
+  openSpecificReport(registro: any, persona:any, reportType: string) {
+    
+    if(reportType === "TARDANZAS"){
+    this.router.navigate(['/tardanzas'], { queryParams: { dni: persona.dni, fecha: registro.Fecha } });
+    } else if (reportType === "TMO"){
+      this.router.navigate(['/patagonia'], { queryParams: { dni: persona.dni, fecha: registro.Fecha } });
+    } else if (reportType === "PRODUCTIVIDAD"){
+      this.router.navigate(['/improductivos'], { queryParams: { dni: persona.dni, fecha: registro.Fecha } });
+    }
+  }
 
 }

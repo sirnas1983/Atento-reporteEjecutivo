@@ -1,0 +1,81 @@
+<div class="table-responsive">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
+    </div>
+    <input type="text" class="form-control" placeholder="Buscar..." (input)="filterEmployees($event)">
+  </div>
+  <table class="outer-table table table-bordered table-hover">
+    <tbody>
+      <ng-container *ngFor="let personData of filteredReport">
+        <tr>
+          <td colspan="8" (click)="toggleCollapse(personData)">
+            <strong>{{ personData.nombre | titlecase }} - DNI: {{ personData.dni }}</strong>
+          </td>
+        </tr>
+        <ng-container *ngIf="expandedContainers || personData.collapsed">
+          <ng-container *ngFor="let semanaData of personData.semanaData">
+            <tr>
+              <td colspan="8"
+                (click)="toggleCollapse(semanaData)">
+                <strong style="color: rgb(34, 141, 141);">&nbsp;&nbsp;&nbsp;&nbsp;Semana: {{ semanaData.semana }}</strong>
+              </td>
+            </tr>
+            <ng-container *ngIf="expandedContainers || semanaData.collapsed">
+              <tr>
+                <td colspan="8" class="small-text"><strong>Site:</strong> {{ semanaData.data[0].site | titlecase }}</td>
+              </tr>
+              <tr>
+                <td colspan="8" class="small-text"><strong>Supervisor:</strong> {{ semanaData.data[0].supervisor }}</td>
+              </tr>
+              <tr class="table-header">
+                <th class="small-text">Fecha</th>
+                <th class="small-text">Jornada Registrada</th>
+                <th class="small-text">Auxiliares</th>
+                <th class="small-text">Transcripción</th>
+                <th class="small-text">Grabas incorrectas</th>
+                <th class="small-text">Tiempo Productivo</th>
+                <th class="small-text">Tiempo Improductivo</th>
+                <th class="small-text">Estado</th>
+              </tr>
+              <tr *ngFor="let data of semanaData.data">
+                <td class="small-text">{{ data.fecha | customDate }}</td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.jornadaRegistrada }}</span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.auxiliares }}</span>
+                  <span class="time-bar"
+                    [ngStyle]="{ width: getPercentageWidth(data.auxiliares, data.jornadaRegistrada), backgroundColor: getColor(data.estado) }"></span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.transcripcion }}</span>
+                  <span class="time-bar"
+                    [ngStyle]="{ width: getPercentageWidth(data.transcripcion, data.jornadaRegistrada), backgroundColor: getColor(data.estado) }"></span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.grabasIncorrectas }}</span>
+                  <span class="time-bar"
+                    [ngStyle]="{ width: getPercentageWidth(data.grabasIncorrectas, data.jornadaRegistrada), backgroundColor: getColor(data.estado) }"></span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.tiempoProductivo }}</span>
+                  <span class="time-bar"
+                    [ngStyle]="{ width: getPercentageWidth(data.tiempoProductivo, data.jornadaRegistrada), backgroundColor: getColor(data.estado) }"></span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative' }">
+                  <span>{{ data.tiempoImproductivo }}</span>
+                  <span class="time-bar"
+                    [ngStyle]="{ width: getPercentageWidth(data.tiempoImproductivo, data.jornadaRegistrada), backgroundColor: getColor(data.estado) }"></span>
+                </td>
+                <td class="small-text" [ngStyle]="{ position: 'relative', color: getColor(data.estado) }">
+                  <span>{{ data.estado }}</span>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

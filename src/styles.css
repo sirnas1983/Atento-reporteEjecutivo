@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+.table-header {
+    background-color: lightgray;
+}
+
+.outer-table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.outer-table strong {
+    font-size: 16px;
+}
+
+.table-header {
+    background-color: lightgray;
+}
+
+
+.small-text {
+    font-size: 12px;
+}
+
+.text-grey {
+    color: grey;
+}
+
+.time-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+}
+
+.text-red {
+    background-color: #f5c6cb;
+}
+
+
+.bg-light-red {
+    background-color: #f5c6cb;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 5px;
+    /* Adjust as needed */
+}
+
+.red-dot {
+    background-color: rgb(212, 92, 92);
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.time-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+}
+
+.table-header:hover {
+    background-color: lightgray !important;
+}
+
+.minus-sign {
+    display: inline-block;
+    width: 10px;
+    height: 2px;
+    background-color: darkgrey;
+    margin-left: 5px;
+}
+
+.text-lightred {
+    color: lightcoral;
+}
+
+.sidebar-nav .nav-item a {
+    font-weight: bold;
+}

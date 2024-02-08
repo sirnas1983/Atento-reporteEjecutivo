@@ -1,0 +1,64 @@
+<div class="table-responsive">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Buscar..." (input)="filterTardanzas($event)">
+    </div>
+    <table class="outer-table table table-bordered table-hover">
+        <tbody>
+            <ng-container *ngFor="let tardanza of filteredTardanzas">
+                <tr>
+                    <td colspan="14" (click)="toggleCollapse(tardanza)">
+                        <strong>{{ tardanza.nombre | titlecase }} - DNI: {{ tardanza.dni }}</strong>
+                    </td>
+                </tr>
+                <ng-container *ngIf="tardanza.collapsed || expandedContainers">
+                    <ng-container *ngFor="let semanaData of tardanza.semanaData">
+                        <tr>
+                            <td colspan="14" (click)="toggleCollapse(semanaData)">
+                                <strong style="color: rgb(34, 141, 141);">&nbsp;&nbsp;&nbsp;&nbsp;Semana: {{ semanaData.semana }}</strong>
+                            </td>
+                        </tr>
+                        <ng-container *ngIf="semanaData.collapsed || expandedContainers">
+                            <tr class="table-header">
+                                <th class="small-text">Fecha</th>
+                                <th class="small-text">Horario Programado</th>
+                                <th class="small-text">Horario Entrada Gap</th>
+                                <th class="small-text">Horario Salida Gap</th>
+                                <th class="small-text">Horario Laboral</th>
+                                <th class="small-text">Hs Gap</th>
+                                <th class="small-text">Hs Avaya</th>
+                                <th class="small-text">Break Objetivo</th>
+                                <th class="small-text">Break Real</th>
+                                <th class="small-text">Impacto Break</th>
+                                <th class="small-text">Entrada Biométrico</th>
+                                <th class="small-text">Salida Biométrico</th>
+                                <th class="small-text">Estado Break</th>
+                                <th class="small-text">Tardanza</th>
+                            </tr>
+                            <tr *ngFor="let data of semanaData.data"
+                                [ngClass]="{ 'bg-light-red': data['Estado Break'].toLowerCase().trim() === 'medida disciplinaria' }">
+                                <td class="small-text">{{ data.Fecha | customDate }}</td>
+                                <td class="small-text">{{ data['Horario Programado'] }}</td>
+                                <td class="small-text">{{ data['Horario Entrada Gap'] }}</td>
+                                <td class="small-text">{{ data['Horario Salida Gap'] }}</td>
+                                <td class="small-text">{{ data['Horario Laboral'] }}</td>
+                                <td class="small-text">{{ data['Hs Gap'] }}</td>
+                                <td class="small-text">{{ data['Hs Avaya'] }}</td>
+                                <td class="small-text">{{ data['Break Objetivo'] }}</td>
+                                <td class="small-text">{{ data['Break Real'] }}</td>
+                                <td class="small-text">{{ data['Impacto Break'] }}</td>
+                                <td class="small-text">{{ data['Entrada Biométrico'] }}</td>
+                                <td class="small-text">{{ data['Salida Biométrico'] }}</td>
+                                <td class="small-text">{{ data['Estado Break'] }}</td>
+                                <td class="small-text">{{ data.Tardanza }}</td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+
+</div>

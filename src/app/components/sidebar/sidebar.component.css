@@ -1,0 +1,12 @@
+.fixed-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 48px; /* Adjust as needed */
+    padding-bottom: 48px; /* Adjust as needed */
+    border-right: 1px solid #858796; /* Example border */
+}

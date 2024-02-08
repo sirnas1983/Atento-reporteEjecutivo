@@ -30,6 +30,29 @@ export class ImproductividadService {
     });
   }
 
+  async getImproductividadByDniAndFecha(dni: string, fecha: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.rawData$.subscribe((data: Improductividad[]) => {
+        if (data) {
+          let $dni = Number(dni);
+          const filteredData = data
+              .filter(item => Number(item.dni) === $dni)
+              .filter(data => this.isSameDate(this.parseExcelDate(fecha), data.fecha));
+          resolve(this.parseImproductividadForTable(filteredData));
+        } else {
+          reject("Error: No data available.");
+        }
+      });
+    });
+  }
+
+  // Helper method to check if two dates are the same
+  private isSameDate(date1: Date, date2: Date): boolean {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
+  }
+
   parseImproductividadForTable(improductividadData: Improductividad[]): any[] {
     this.ls.showLoader(this.constructor.name);
 

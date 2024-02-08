@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ExecutiveGraphData } from 'src/app/intefaces/ExecutiveGraphData';
 import { ArrayToGraphDataService } from 'src/app/services/array-to-graph-data.service';
-import { LoaderService } from 'src/app/services/loader.service';
 import { ResumenService } from 'src/app/services/resumen.service';
 
 @Component({

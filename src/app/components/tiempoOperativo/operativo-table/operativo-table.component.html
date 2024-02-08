@@ -1,0 +1,67 @@
+<div class="table-responsive">
+    <table class="outer-table table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th colspan="6">{{ filteredData.nombre }}</th>
+                <th colspan="4" class="text-right"><button class="btn btn-primary" (click)="exportToExcel()">Descargar
+                        reporte</button></th>
+            </tr>
+            <tr>
+                <th colspan="10">DNI: {{ filteredData.dni }}</th>
+            </tr>
+            <tr class="table-header">
+                <th class="small-text text-center">Nombre</th>
+                <th class="small-text text-center">ID Audio</th>
+                <th class="small-text text-center">Duración Audio</th>
+                <th class="small-text text-center">Objetivo x 3</th>
+                <th class="small-text text-center">Objetivo x 4</th>
+                <th class="small-text text-center">Fecha Transcripción</th>
+                <th class="small-text text-center">Hora Transcripción</th>
+                <th class="small-text text-center">Duración Transcripción</th>
+                <th class="small-text text-center">Desvío x 3</th>
+                <th class="small-text text-center">Desvío x 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of filteredData.registros; let i = index">
+                <tr (click)="toggleNestedTable(data.idAudio, i)">
+                    <td class="small-text text-center">{{ data.nombre }}</td>
+                    <td class="small-text text-center">{{ data.idAudio }}</td>
+                    <td class="small-text text-center">{{ data.duracionAudio }}</td>
+                    <td class="small-text text-center">{{ data.objetivo3 }}</td>
+                    <td class="small-text text-center">{{ data.objetivo4 }}</td>
+                    <td class="small-text text-center">{{ data.fechaTranscripcion | customDate }}</td>
+                    <td class="small-text text-center">{{ data.horaTranscripcion }}</td>
+                    <td class="small-text text-center">{{ data.duracionTranscripcion }}</td>
+                    <td class="small-text text-center" [class.bg-light-red]="data.desvio3 && +data.desvio3 > 0">{{
+                        data.desvio3 }}</td>
+                    <td class="small-text text-center" [class.bg-light-red]="data.desvio4 && +data.desvio4 > 0">{{
+                        data.desvio4 }}</td>
+                </tr>
+                <tr *ngIf="showNestedTable && selectedIndex === i">
+                    <td colspan="10">
+                        <div class="table-responsive">
+                            <table class="inner-table table table-bordered table-hover">
+                                <!-- Nested table headers -->
+                                <thead>
+                                    <tr>
+                                        <th>Transcripcion:</th>
+                                        <!-- Add more columns as needed -->
+                                    </tr>
+                                </thead>
+                                <!-- Nested table body -->
+                                <tbody>
+                                    <!-- Iterate through detailed audio data to display -->
+                                    <tr>
+                                        <td>{{ detailedAudioData.transcripcion }}</td>
+                                        <!-- Add more columns as needed -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

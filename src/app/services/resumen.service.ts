@@ -15,7 +15,7 @@ export class ResumenService {
 
   private rawData: {} = {};
 
-  constructor(private excelService: ExcelService, private ls : LoaderService) {
+  constructor(private excelService: ExcelService, private ls: LoaderService) {
     this.initializeDataSubscription();
   }
 
@@ -62,9 +62,10 @@ export class ResumenService {
 
   private processResumenEjecutivo(data: ResumenEjecutivo[]): ReportePersona[] {
     const uniqueNames = [...new Set(data.map(obj => obj['NOMBRE']))].filter(name => typeof name === 'string');
-    const totalRegistros : number = data.length;
+    const totalRegistros: number = data.length;
     return uniqueNames.map(name => {
       const registros = data.filter(obj => obj.NOMBRE === name);
+      const dni = registros[0].DNI; // Get the dni value from the first record for the name
       return new ReportePersona(
         name,
         registros.length,
@@ -75,8 +76,11 @@ export class ResumenService {
         registros.filter(obj => obj.TMO !== "OK").length,
         registros.filter(obj => obj.TARDANZAS !== "OK").length,
         registros,
-        totalRegistros
+        totalRegistros,
+        dni
+        // Pass dni to the constructor
       );
     });
-  }
+}
+
 }
