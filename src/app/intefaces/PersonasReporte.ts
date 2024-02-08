@@ -29,6 +29,7 @@ export class ReportePersona {
     porImproductivos : number= 0;
     porTMO : number= 0;
     porTardanza: number= 0;
+    weight : number = 0;
 
     constructor(nombre : String,
     cantidadRegistros : number,
@@ -38,7 +39,8 @@ export class ReportePersona {
     totalImproductivos : number,
     totalTMO : number,
     totalTardanza : number,
-    registros : ResumenEjecutivo[]){
+    registros : ResumenEjecutivo[],
+    registries : number){
         this.nombre = nombre;
         this.cantidadRegistros = cantidadRegistros;
         this.totalDescansos = totalDescansos;
@@ -49,6 +51,7 @@ export class ReportePersona {
         this.totalTardanza = totalTardanza;
         this.registros = registros;
         this.calcularPorcentajes();
+        this.setWeight(registries);
     }
 
     private calcularPorcentajes(){
@@ -61,5 +64,8 @@ export class ReportePersona {
             this.porTardanza = Math.round(this.totalTardanza/this.cantidadRegistros * 10000)/100;
         }
     }
-    
+
+    public setWeight(totalRegistries : number ){
+        this.weight = this.cantidadRegistros/totalRegistries;
+    }
 }

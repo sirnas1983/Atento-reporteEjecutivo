@@ -5,15 +5,17 @@
 <!-- Card Body -->
 <div class="card-body">
     <div class="chart-area">
-        <div *ngIf="sortedData" class="chart-pie pt-4 pb-2">
-            <canvas id="myChart" height="100vh" width="100vw"
+        <div *ngIf="sortedData" class="chart-pie pt-4 pb-1">
+            <canvas id="myChart" height="100%" width="100%"
                 baseChart class="chart" 
                 [data]="barChartData" 
                 [options]="barChartOptions"
                 [type]="chartType" 
-                
             >
             </canvas>
+        </div>
+        <div>
+            <h6>Esta grafica muestra la incidencia de cada uno de los rubros sobre los desvios</h6>
         </div>
     </div>
 </div>

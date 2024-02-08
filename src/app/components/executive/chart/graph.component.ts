@@ -1,11 +1,12 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, Inject, Injector, OnInit, ViewChild } from '@angular/core';
 import { ChartData, ChartEvent } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ExecutiveGraphData } from 'src/app/intefaces/ExecutiveGraphData';
 import { ArrayToGraphDataService } from 'src/app/services/array-to-graph-data.service';
-import { ExcelService } from 'src/app/services/excel-to-array.service';
+import { ResumenService } from 'src/app/services/resumen.service';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartType } from "chart.js";
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-graph',
@@ -72,15 +73,18 @@ export class GraphComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.excelService.processedData$.subscribe(data => {
-      this.chartData = this.arrayToGraphDataService.convertToGraphData(data);
-      this.sortedData = this.sortChartData(this.chartData);
-      this.barChartData.datasets[0].data = this.sortedData.map(data => data[1]);
-      this.barChartData.labels = this.sortedData.map(data => data[0].slice(3));
-      this.assignBarColors();
-      this.chart?.update();
+    this.resumenService.processedData$.subscribe(data => {
+      if (data) {
+        this.chartData = this.arrayToGraphDataService.convertToGraphData(data);
+        this.sortedData = this.sortChartData(this.chartData);
+        this.barChartData.datasets[0].data = this.sortedData.map(data => data[1]);
+        this.barChartData.labels = this.sortedData.map(data => data[0].slice(3));
+        this.assignBarColors();
+        this.chart?.update();
+      }
     });
   }
+  
   
   private assignBarColors(): void {
     const colorScale = [
@@ -104,7 +108,7 @@ export class GraphComponent implements OnInit {
   
   public chartType: ChartType = 'bar';
 
-  constructor(private excelService: ExcelService, private arrayToGraphDataService: ArrayToGraphDataService) { }
+  constructor(private resumenService: ResumenService, private arrayToGraphDataService: ArrayToGraphDataService, private loaderService : LoaderService) { }
 
   private sortChartData(data: ExecutiveGraphData): any[] {
     let sortedData : any[] = [];

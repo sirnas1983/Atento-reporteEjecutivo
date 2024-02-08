@@ -1,2 +1,4 @@
-<input type="file" (change)="onFileChange($event)">
-<app-loading *ngIf="isLoading"></app-loading>
+<label for="file-upload" class="custom-file-upload bg-primary">
+    <i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte
+</label>
+<input id="file-upload" type="file" (change)="onFileChange($event)" style="display: none;">

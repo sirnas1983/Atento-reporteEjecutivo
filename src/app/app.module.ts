@@ -20,6 +20,11 @@ import { ContainerComponent } from './components/executive/structure/container.c
 import { ExcelComponent } from './components/excel/excel.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DetailComponent } from './components/executive/detail/detail.component';
+import { TmoTableComponent } from './components/tmo/tmo-table/tmo-table.component';
+import { TmoStructureComponent } from './components/tmo/tmo-structure/tmo-structure.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -40,7 +45,12 @@ registerLocaleData(localeEs);
 
     RoundNumberPipe,
     ExcelDateToDate,
-    CustomDatePipe,    
+    CustomDatePipe,
+    TmoTableComponent,
+    TmoStructureComponent,
+    SidebarComponent,
+    TopbarComponent,
+    FooterComponent,    
   ],
   imports: [
     BrowserModule,
@@ -54,7 +64,7 @@ registerLocaleData(localeEs);
       showTitle:true,
       innerStrokeWidth: 3,
       outerStrokeWidth: 6
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

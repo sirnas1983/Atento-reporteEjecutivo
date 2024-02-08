@@ -1,17 +1,17 @@
-import { Time } from "@angular/common"
-
 export interface Improductividad {
-    semana : number,
-    dni : number,
-    site : string,
-    nombre : string,
-    motivo : string,
-    fecha : Date,
-    jornada : Time,
-    auxiliares : Time,
-    transcripcion : Time,
-    gIncorrectass : Time,
-    tProductivo : Time,
-    tImproductivo : Time,
-    estado : String
-}
+    semana: string;
+    dni: string;
+    site: string;
+    supervisor: string;
+    nombre: string;
+    motivoDeApercibimiento: string;
+    fecha: Date; // Changed to Date type for Excel date
+    jornadaRegistrada: string; // Assuming Excel time is represented as a string
+    auxiliares: string; // Assuming Excel time is represented as a string
+    transcripcion: string;
+    grabasIncorrectas: string; // Assuming Excel time is represented as a string
+    tiempoProductivo: string | Date; // Can be Excel time or string
+    tiempoImproductivo: string; // Assuming Excel time is represented as a string
+    estado: string;
+  }
+  

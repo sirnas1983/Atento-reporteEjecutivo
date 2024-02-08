@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
 import * as XLSX from 'xlsx';
-
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReadExcelFileService {
 
-  constructor() { }
+  constructor(private ls : LoaderService) { }
 
-  private validateSheetName(workbook: XLSX.WorkBook, sheetName: string): boolean {
-    return workbook.SheetNames.includes(sheetName);
-  }
-  
-  public readFile(file: File, sheetName?: string): Promise<any[]> {
-    return new Promise<any[]>((resolve, reject) => {
+  public readFile(file: File): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.ls.showLoader(this.constructor.name);
       const reader: FileReader = new FileReader();
       reader.onload = (e: any) => {
         const data: string = e.target.result;
         try {
           const workbook: XLSX.WorkBook = XLSX.read(data, { type: 'binary' });
-          const selectedSheetName: string = sheetName || workbook.SheetNames[0]; // Use the first sheet if none provided
-          if (!this.validateSheetName(workbook, selectedSheetName)) {
-            reject(`Sheet "${selectedSheetName}" not found in the Excel file.`);
-            return;
-          }
-          const worksheet: XLSX.WorkSheet = workbook.Sheets[selectedSheetName];
-          const jsonData: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Include header
+          const jsonData: any = {};
+          workbook.SheetNames.forEach(sheetName => {
+            const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
+            jsonData[sheetName] = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Include header
+          });
           resolve(jsonData);
+          this.ls.hideLoader(this.constructor.name);
         } catch (error) {
           reject(error);
         }
@@ -39,3 +35,4 @@ export class ReadExcelFileService {
     });
   }
 }
+
