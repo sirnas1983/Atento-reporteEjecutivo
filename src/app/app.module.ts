@@ -30,7 +30,9 @@ import { TardanzasStructureComponent } from './components/tardanzas/tardanzas-st
 import { TardanzasTableComponent } from './components/tardanzas/tardanzas-table/tardanzas-table.component';
 import { OperativoStructureComponent } from './components/tiempoOperativo/operativo-structure/operativo-structure.component';
 import { OperativoTableComponent } from './components/tiempoOperativo/operativo-table/operativo-table.component';
-
+import { PatagoniaStructureComponent } from './components/patagonia/patagonia-structure/patagonia-structure.component';
+import { PatagoniaTableComponent } from './components/patagonia/patagonia-table/patagonia-table.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -58,7 +60,9 @@ registerLocaleData(localeEs);
     TardanzasStructureComponent,
     TardanzasTableComponent,
     OperativoStructureComponent,
-    OperativoTableComponent,    
+    OperativoTableComponent,
+    PatagoniaStructureComponent,
+    PatagoniaTableComponent,    
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,7 @@ registerLocaleData(localeEs);
     RouterOutlet, 
     RouterLink, 
     RouterLinkActive,
+    ScrollingModule,
   ],
   providers: [], // You can add services here if needed at the application level
   bootstrap: [AppComponent]

@@ -4,8 +4,9 @@ import { ContainerComponent } from './components/executive/structure/container.c
 import { ImproductividadStructureComponent } from './components/improductividad/improductividad-structure/improductividad-structure.component';
 import { ListComponent } from './components/executive/list/list.component';
 import { TardanzasStructureComponent } from './components/tardanzas/tardanzas-structure/tardanzas-structure.component';
-import { OperativoStructureComponent } from './components/tiempoOperativo/operativo-structure/operativo-structure.component';
 import { GraphComponent } from './components/executive/chart/graph.component';
+import { PatagoniaStructureComponent } from './components/patagonia/patagonia-structure/patagonia-structure.component';
+import { OperativoStructureComponent } from './components/tiempoOperativo/operativo-structure/operativo-structure.component';
 
 const routes: Routes = [
   { path: 'general', component: ContainerComponent },
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'personas',
     component: ListComponent,
+  },
+  {
+    path: 'basePatagonia',
+    component: PatagoniaStructureComponent
   },
   {
     path: 'patagonia',

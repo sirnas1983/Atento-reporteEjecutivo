@@ -1,0 +1,60 @@
+<div class="table-responsive">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Buscar..." (input)="filterEmployees($event)">
+    </div>
+    
+    <table class="outer-table table table-bordered">
+      <tbody>
+        <tr class="table-header">
+          <th class="small-text">ANI</th>
+          <th class="small-text">ID Grabacion</th>
+          <th class="small-text">Agente</th>
+          <th class="small-text">Extension</th>
+          <th class="small-text">Fecha Grabacion</th>
+          <th class="small-text">Hora Grabacion</th>
+          <th class="small-text">Duracion Grabacion</th>
+          <th class="small-text">Servicio</th>
+          <th class="small-text">URL</th>
+          <th class="small-text">Servidor</th>
+          <th class="small-text">Tipo de Resultado</th>
+          <th class="small-text">Resultado</th>
+          <th class="small-text">Transcripcion</th>
+          <th class="small-text">Duracion Transcripcion (minutos)</th>
+          <th class="small-text">Fecha/Hora Creacion Primer Texto</th>
+          <th class="small-text">Usuario Creacion Primer Texto</th>
+          <th class="small-text">Fecha/Hora Primer Texto Usuario Resultado</th>
+          <th class="small-text">Fecha/Hora Creacion Ultimo Texto</th>
+          <th class="small-text">Fecha Creacion Resultado</th>
+          <th class="small-text">Usuario Creacion Resultado</th>
+        </tr>
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+        <tr *cdkVirtualFor="let data of filteredReport">
+          <td class="small-text">{{ data.ani }}</td>
+          <td class="small-text">{{ data['id grabacion'] }}</td>
+          <td class="small-text">{{ data.agente }}</td>
+          <td class="small-text">{{ data.extension }}</td>
+          <td class="small-text">{{ data['fecha grabacion'] }}</td>
+          <td class="small-text">{{ data['hora grabacion'] }}</td>
+          <td class="small-text">{{ data['duracion grabacion'] }}</td>
+          <td class="small-text">{{ data.servicio }}</td>
+          <td class="small-text">{{ data.url }}</td>
+          <td class="small-text">{{ data.servidor }}</td>
+          <td class="small-text">{{ data['tipo de resultado'] }}</td>
+          <td class="small-text">{{ data.resultado }}</td>
+          <td class="small-text">{{ data.transcripcion }}</td>
+          <td class="small-text">{{ data['duracion transcripcion (minutos)'] }}</td>
+          <td class="small-text">{{ data['fecha/hora creacion primer texto'] }}</td>
+          <td class="small-text">{{ data['usuario creacion primer texto'] }}</td>
+          <td class="small-text">{{ data['fecha/hora primer texto usuario resultado'] }}</td>
+          <td class="small-text">{{ data['fecha/hora creacion ultimo texto'] }}</td>
+          <td class="small-text">{{ data['fecha creacion resultado'] }}</td>
+          <td class="small-text">{{ data['usuario creacion resultado'] }}</td>
+        </tr>
+    </cdk-virtual-scroll-viewport>
+      </tbody>
+    </table>
+  </div>
+  

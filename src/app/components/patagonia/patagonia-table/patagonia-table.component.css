@@ -1,0 +1,29 @@
+.table td {
+    position: relative; /* Set position to relative */
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .full-content {
+    display: none; /* Hide the full content by default */
+    position: absolute; /* Position it absolutely */
+    z-index: 1; /* Ensure it appears above other content */
+    white-space: normal; /* Allow text to wrap and show full content */
+    background-color: white; /* Adjust background color if needed */
+    padding: 5px; /* Add padding for better readability */
+    border: 1px solid #ccc; /* Add border for better visibility */
+  }
+  
+  .table td:hover .full-content {
+    display: block; /* Show the full content on hover */
+  }
+
+  .example-viewport {
+    height: 300px; /* Set the height of the viewport */
+    overflow: auto; /* Enable scrolling */
+  }
+  
+  
+  

@@ -10,3 +10,8 @@
     padding-bottom: 48px; /* Adjust as needed */
     border-right: 1px solid #858796; /* Example border */
 }
+
+.svg-image {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%)
+            drop-shadow(0 0 2px rgb(213, 213, 219));
+}

@@ -5,18 +5,18 @@
         </div>
         <input type="text" class="form-control" placeholder="Buscar..." (input)="filterTardanzas($event)">
     </div>
-    <table class="outer-table table table-bordered table-hover">
+    <table class="outer-table table table-bordered">
         <tbody>
             <ng-container *ngFor="let tardanza of filteredTardanzas">
                 <tr>
-                    <td colspan="14" (click)="toggleCollapse(tardanza)">
+                    <td colspan="14" (click)="toggleCollapse(tardanza)" class="clickable">
                         <strong>{{ tardanza.nombre | titlecase }} - DNI: {{ tardanza.dni }}</strong>
                     </td>
                 </tr>
                 <ng-container *ngIf="tardanza.collapsed || expandedContainers">
                     <ng-container *ngFor="let semanaData of tardanza.semanaData">
                         <tr>
-                            <td colspan="14" (click)="toggleCollapse(semanaData)">
+                            <td colspan="14" (click)="toggleCollapse(semanaData)" class="clickable">
                                 <strong style="color: rgb(34, 141, 141);">&nbsp;&nbsp;&nbsp;&nbsp;Semana: {{ semanaData.semana }}</strong>
                             </td>
                         </tr>

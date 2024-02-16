@@ -1,7 +1,3 @@
-.table-header {
-    background-color: lightgray;
-}
-
 .outer-table {
     width: 100%;
     font-size: 14px;
@@ -10,11 +6,6 @@
 .outer-table strong {
     font-size: 16px;
 }
-
-.table-header {
-    background-color: lightgray;
-}
-
 
 .small-text {
     font-size: 12px;
@@ -72,8 +63,8 @@ svg {
     height: 3px;
 }
 
-.table-header:hover {
-    background-color: lightgray !important;
+.table-header {
+    background-color: rgba(211, 211, 211, 0.178) !important;
 }
 
 .minus-sign {
@@ -90,4 +81,14 @@ svg {
 
 .sidebar-nav .nav-item a {
     font-weight: bold;
+}
+
+.clickable {
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Remove font-size transition */
+}
+
+.clickable:hover {
+    background-color: rgba(188, 188, 188, 0.8); /* Light background color on hover */
+
 }

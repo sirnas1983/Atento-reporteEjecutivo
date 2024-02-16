@@ -1,10 +1,13 @@
 <div class="table-responsive">
-    <table class="outer-table table table-bordered table-hover">
+    <table class="outer-table table table-bordered">
         <thead>
             <tr>
-                <th colspan="6">{{ filteredData.nombre }}</th>
-                <th colspan="4" class="text-right"><button class="btn btn-primary" (click)="exportToExcel()">Descargar
-                        reporte</button></th>
+                <th colspan="6" style="border-right: none;">{{ filteredData.nombre }}</th>
+                <th colspan="4" style="border-left: none;" class="text-right">
+                    <button class="btn btn-primary" (click)="exportToExcel()">
+                        Descargar reporte
+                    </button>
+                </th>
             </tr>
             <tr>
                 <th colspan="10">DNI: {{ filteredData.dni }}</th>
@@ -24,7 +27,7 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let data of filteredData.registros; let i = index">
-                <tr (click)="toggleNestedTable(data.idAudio, i)">
+                <tr (click)="toggleNestedTable(data.idAudio, i)" class="clickable">
                     <td class="small-text text-center">{{ data.nombre }}</td>
                     <td class="small-text text-center">{{ data.idAudio }}</td>
                     <td class="small-text text-center">{{ data.duracionAudio }}</td>

@@ -54,8 +54,16 @@ export class ListComponent {
     }
   }
 
-  toggleInnerTable(row : any) {
-    row.collapsed = !row.collapsed;
+  toggleInnerTable(element: any) {
+    // Close all inner tables except the clicked one
+    this.filteredReportePersonas.forEach(item => {
+        if (item !== element) {
+            item.collapsed = false;
+        }
+    });
+
+    // Toggle the clicked element
+    element.collapsed = !element.collapsed;
   }
 
   openSpecificReport(registro: any, persona:any, reportType: string) {

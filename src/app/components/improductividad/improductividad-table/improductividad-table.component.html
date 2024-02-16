@@ -5,11 +5,11 @@
     </div>
     <input type="text" class="form-control" placeholder="Buscar..." (input)="filterEmployees($event)">
   </div>
-  <table class="outer-table table table-bordered table-hover">
+  <table class="outer-table table table-bordered">
     <tbody>
       <ng-container *ngFor="let personData of filteredReport">
         <tr>
-          <td colspan="8" (click)="toggleCollapse(personData)">
+          <td colspan="8" class="clickable" (click)="toggleCollapse(personData)">
             <strong>{{ personData.nombre | titlecase }} - DNI: {{ personData.dni }}</strong>
           </td>
         </tr>
@@ -17,7 +17,7 @@
           <ng-container *ngFor="let semanaData of personData.semanaData">
             <tr>
               <td colspan="8"
-                (click)="toggleCollapse(semanaData)">
+                (click)="toggleCollapse(semanaData)" class="clickable">
                 <strong style="color: rgb(34, 141, 141);">&nbsp;&nbsp;&nbsp;&nbsp;Semana: {{ semanaData.semana }}</strong>
               </td>
             </tr>
