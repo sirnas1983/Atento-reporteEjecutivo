@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { BasePatagoniaService } from 'src/app/services/base-patagonia.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
