@@ -22,17 +22,6 @@ export class ImproductividadTableComponent {
     this.improductividadService.tableData$.subscribe((data) => {
       this.nestedTableData = data.slice(1);
       this.filteredReport = this.nestedTableData;
-<<<<<<< HEAD:src/app/components/improductividad/improductividad-table/improductividad-table.component.ts
-    });
-    // Subscribe to query parameters
-    this.expandedContainers = false;
-    this.route.queryParams.subscribe(params => {
-      // Store the query parameters
-      this.queryParams = params;
-      // Call method to get data for specific DNI and fecha
-      this.getDataForDniAndFecha();
-=======
->>>>>>> a06545c4f668470f856f8efd3dcf9a6eecf9ecd7:src/app/components/tmo/tmo-table/tmo-table.component.ts
     });
   }
 

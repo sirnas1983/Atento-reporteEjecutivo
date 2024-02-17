@@ -9,14 +9,14 @@
         <tbody>
             <ng-container *ngFor="let tardanza of filteredTardanzas">
                 <tr>
-                    <td colspan="14" (click)="toggleCollapse(tardanza)" class="clickable">
+                    <td colspan="14" (click)="toggleCollapse(tardanza)" class="clickable" [class.expanded]="tardanza.collapsed">
                         <strong>{{ tardanza.nombre | titlecase }} - DNI: {{ tardanza.dni }}</strong>
                     </td>
                 </tr>
                 <ng-container *ngIf="tardanza.collapsed || expandedContainers">
                     <ng-container *ngFor="let semanaData of tardanza.semanaData">
                         <tr>
-                            <td colspan="14" (click)="toggleCollapse(semanaData)" class="clickable">
+                            <td colspan="14" (click)="toggleCollapse(semanaData)" class="clickable" [class.expanded]="semanaData.collapsed">
                                 <strong style="color: rgb(34, 141, 141);">&nbsp;&nbsp;&nbsp;&nbsp;Semana: {{ semanaData.semana }}</strong>
                             </td>
                         </tr>

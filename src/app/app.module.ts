@@ -33,6 +33,7 @@ import { OperativoTableComponent } from './components/tiempoOperativo/operativo-
 import { PatagoniaStructureComponent } from './components/patagonia/patagonia-structure/patagonia-structure.component';
 import { PatagoniaTableComponent } from './components/patagonia/patagonia-table/patagonia-table.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ExcelDatePipe } from './pipes/excel-date.pipe';
 
 
 
@@ -62,7 +63,8 @@ registerLocaleData(localeEs);
     OperativoStructureComponent,
     OperativoTableComponent,
     PatagoniaStructureComponent,
-    PatagoniaTableComponent,    
+    PatagoniaTableComponent,
+    ExcelDatePipe,    
   ],
   imports: [
     BrowserModule,

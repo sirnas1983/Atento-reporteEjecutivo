@@ -9,7 +9,7 @@
         <tbody>
             <ng-container *ngFor="let element of filteredReportePersonas">
                 <!-- Group by name -->
-                <tr (click)="toggleInnerTable(element)">
+                <tr (click)="toggleInnerTable(element)" [class.expanded]="element.collapsed">
                     <td colspan="7" class="small-text clickable">
                         <strong >{{ element.nombre }}</strong> - DNI: {{element.dni}}
                     </td>
