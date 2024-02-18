@@ -1,17 +1,5 @@
 import { ResumenEjecutivo } from "./ResumenEjecutivo";
 
-// export interface PersonaReporte {
-//     'nombre' : String,
-//     'cantidadRegistros' : Number,
-//     'totalDescansos': Number,
-//     'totalDesvios' : Number,
-//     'totalFaltas': Number,
-//     'totalImproductivos' : Number,
-//     'totalTMO' : Number,
-//     'totalTardanza': Number,
-//     'registros' : ResumenEjecutivo[]
-// }
-
 export class ReportePersona {
 
     nombre: string;

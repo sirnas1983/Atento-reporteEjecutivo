@@ -32,7 +32,6 @@ import { OperativoStructureComponent } from './components/tiempoOperativo/operat
 import { OperativoTableComponent } from './components/tiempoOperativo/operativo-table/operativo-table.component';
 import { PatagoniaStructureComponent } from './components/patagonia/patagonia-structure/patagonia-structure.component';
 import { PatagoniaTableComponent } from './components/patagonia/patagonia-table/patagonia-table.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ExcelDatePipe } from './pipes/excel-date.pipe';
 
 
@@ -74,7 +73,6 @@ registerLocaleData(localeEs);
     RouterOutlet, 
     RouterLink, 
     RouterLinkActive,
-    ScrollingModule,
   ],
   providers: [], // You can add services here if needed at the application level
   bootstrap: [AppComponent]

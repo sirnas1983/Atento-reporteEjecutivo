@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ExcelService } from './excel.service';
 import { LoaderService } from './loader.service';
 import { BasePatagonia } from '../intefaces/BasePatagonia';
 import { PersonaPatagonia } from '../intefaces/PersonaPatagonia';
 import { ReportePatagonia } from '../intefaces/ReportePatagonia';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
