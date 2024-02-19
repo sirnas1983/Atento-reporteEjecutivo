@@ -9,10 +9,63 @@
         <tbody>
             <ng-container *ngFor="let element of filteredReportePersonas">
                 <!-- Group by name -->
-                <tr (click)="toggleInnerTable(element)" [class.expanded]="element.collapsed">
-                    <td colspan="7" class="small-text clickable">
-                        <strong >{{ element.nombre }}</strong> - DNI: {{element.dni}}
+                <tr (click)="toggleInnerTable(element)" [class.expanded]="element.collapsed" class="clickable">
+                    <td class="small-text" [attr.colspan]="element.collapsed ? '7' : null">
+                        <span>
+                            <strong>{{ element.nombre }}</strong> - DNI: {{element.dni}}
+                        </span>
                     </td>
+                    <!-- Progress bars for percentages -->
+                    <ng-container *ngIf="!element.collapsed">
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">Desvios: {{ element.porDesvios }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porDesvios + '%', 'background-color': getColor(element.porDesvios)}">
+                                </span>
+                            </span>
+                        </td>
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">Tardanzas: {{ element.porTardanza }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porTardanza + '%', 'background-color': getColor(element.porTardanza)}">
+                                </span>
+                            </span>
+                        </td>
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">TMO: {{ element.porTMO }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porTMO + '%', 'background-color': getColor(element.porTMO)}">
+                                </span>
+                            </span>
+                        </td>
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">Descansos: {{ element.porDescansos }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porDescansos + '%', 'background-color': getColor(element.porDescansos)}">
+                                </span>
+                            </span>
+                        </td>
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">Improductivos: {{ element.porImproductivos }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porImproductivos + '%', 'background-color': getColor(element.porImproductivos)}">
+                                </span>
+                            </span>
+                        </td>
+                        <td class="small-text bar-container" [ngStyle]="{ position: 'relative' }">
+                            <span>
+                                <span class="discrete-tag">Faltas: {{ element.porFaltas }}%</span>
+                                <span class="time-bar"
+                                    [ngStyle]="{'width': element.porFaltas + '%', 'background-color': getColor(element.porFaltas)}">
+                                </span>
+                            </span>
+                        </td>
+                    </ng-container>
                 </tr>
                 <!-- Inner table data -->
                 <ng-container *ngIf="element.collapsed">

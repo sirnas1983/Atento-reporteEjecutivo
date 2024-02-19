@@ -3,10 +3,10 @@
     <!-- Page Wrapper -->
     <div id="wrapper" class="d-flex">
   
-      <app-sidebar></app-sidebar>
+      <app-sidebar id="sidebar" class="fixed-sidebar"></app-sidebar>
   
       <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content-wrapper" [style.padding-left.px]="sidebarWidth" class="d-flex flex-column">
   
         <!-- TopBar -->
         <app-topbar></app-topbar>
@@ -39,5 +39,6 @@
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
+
   </body>
   

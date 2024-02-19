@@ -1,161 +1,185 @@
 .outer-table {
-    width: 100%;
-    font-size: 14px;
+  width: 100%;
+  font-size: 14px;
 }
 
 .outer-table strong {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .small-text {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .text-grey {
-    color: grey;
+  color: grey;
 }
 
 .time-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
 }
 
 .text-red {
-    background-color: #f5c6cb;
+  background-color: #f5c6cb;
 }
 
 
 .bg-light-red {
-    background-color: #f5c6cb;
+  background-color: #f5c6cb;
 }
 
 .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-left: 5px;
-    /* Adjust as needed */
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+  /* Adjust as needed */
 }
 
 .red-dot {
-    background-color: rgb(212, 92, 92);
+  background-color: rgb(212, 92, 92);
 }
 
 svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .time-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
 }
 
 .table-header {
-    background-color: rgba(211, 211, 211, 0.178) !important;
+  background-color: rgba(211, 211, 211, 0.178) !important;
 }
 
 .minus-sign {
-    display: inline-block;
-    width: 10px;
-    height: 2px;
-    background-color: darkgrey;
-    margin-left: 5px;
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background-color: darkgrey;
+  margin-left: 5px;
 }
 
 .text-lightred {
-    color: lightcoral;
+  color: lightcoral;
 }
 
 .sidebar-nav .nav-item a {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .clickable {
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Remove font-size transition */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Remove font-size transition */
 }
 
 .clickable:hover {
-    background-color: rgba(188, 188, 188, 0.8); /* Light background color on hover */
+  background-color: rgba(188, 188, 188, 0.8);
+  /* Light background color on hover */
 
 }
 
 .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    z-index: 50;
-  }
-  
-  .loading-message {
-    text-align: center;
-    color: white;
-  }
-  
-  .dot-animation {
-    display: inline-block;
-    margin: 0 4px; /* Adjust the spacing between dots */
-    width: 8px;
-    height: 8px;
-    background-color: white;
-    border-radius: 50%;
-    animation-name: dot-animation;
-    animation-iteration-count: infinite; /* Apply animation */
-  }
-  
-  .dot1 {
-    animation-delay: 300ms;
-    animation-duration: 1.5s;
-  }
-  
-  .dot2 {
-    animation-delay: 500ms; /* Delay the start of animation for the second dot */
-    animation-duration: 1.5s;
-  }
-  
-  .dot3 {
-    animation-delay: 700ms; /* Delay the start of animation for the third dot */
-    animation-duration: 1.5s;
-  }
-  
-  #wrapper {
-    display: flex;
-  }
-  
-  #content-wrapper {
-    flex-grow: 1;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  z-index: 50;
+}
 
-  .expanded {
-    background-color: #a9aafb; /* Change to the desired background color */
+.loading-message {
+  text-align: center;
+  color: white;
+}
+
+.dot-animation {
+  display: inline-block;
+  margin: 0 4px;
+  /* Adjust the spacing between dots */
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  animation-name: dot-animation;
+  animation-iteration-count: infinite;
+  /* Apply animation */
+}
+
+.dot1 {
+  animation-delay: 300ms;
+  animation-duration: 1.5s;
+}
+
+.dot2 {
+  animation-delay: 500ms;
+  /* Delay the start of animation for the second dot */
+  animation-duration: 1.5s;
+}
+
+.dot3 {
+  animation-delay: 700ms;
+  /* Delay the start of animation for the third dot */
+  animation-duration: 1.5s;
+}
+
+#wrapper {
+  display: flex;
+}
+
+.expanded {
+  background-color: #a9aafb;
+}
+
+.fixed-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.warning-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: yellow;
+  padding: 10px;
+  text-align: center;
+  z-index: 9999;
+}
+
+@keyframes dot-animation {
+  0%,
+  100% {
+    opacity: 0;
+    /* Start and end with no visibility */
   }
-  
-  @keyframes dot-animation {
-    0%, 100% {
-      opacity: 0; /* Start and end with no visibility */
-    }
-    50% {
-      opacity: 1; /* At 50%, fully visible */
-    }
+  50% {
+    opacity: 1;
+    /* At 50%, fully visible */
   }
-  
-  
+}

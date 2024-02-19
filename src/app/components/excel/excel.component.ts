@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReportePersona } from 'src/app/intefaces/PersonasReporte';
+import { ReportePersona } from 'src/app/intefaces/ReportePersona';
 import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ExecutiveGraphData } from '../intefaces/ExecutiveGraphData';
-import { ReportePersona } from '../intefaces/PersonasReporte';
+import { ReportePersona } from '../intefaces/ReportePersona';
 import { LoaderService } from './loader.service';
 
 @Injectable({

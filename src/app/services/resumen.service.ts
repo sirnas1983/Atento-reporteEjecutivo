@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ResumenEjecutivo } from '../intefaces/ResumenEjecutivo';
-import { ReportePersona } from '../intefaces/PersonasReporte';
+import { ReportePersona } from '../intefaces/ReportePersona';
 import { ExcelService } from './excel.service';
 import { LoaderService } from './loader.service';
 

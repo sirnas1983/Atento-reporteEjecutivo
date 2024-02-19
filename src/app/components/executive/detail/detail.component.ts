@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ReportePersona } from 'src/app/intefaces/PersonasReporte';
+import { ReportePersona } from 'src/app/intefaces/ReportePersona';
 import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({

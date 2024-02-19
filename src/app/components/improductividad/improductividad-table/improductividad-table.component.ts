@@ -23,6 +23,13 @@ export class ImproductividadTableComponent {
       this.nestedTableData = data.slice(1);
       this.filteredReport = this.nestedTableData;
     });
+    this.expandedContainers = false;
+    this.route.queryParams.subscribe(params => {
+      // Store the query parameters
+      this.queryParams = params;
+      // Call method to get data for specific DNI and fecha
+      this.getDataForDniAndFecha();
+    });
   }
 
   toggleCollapse(row: any) {
